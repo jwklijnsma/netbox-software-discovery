@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ReportingAgent, SoftwareInstallation, VersionEvent
+from ..models import ReportingAgent, SoftwareInstallation, VersionEvent
 
 class AgentSerializer(serializers.ModelSerializer):
     class Meta:

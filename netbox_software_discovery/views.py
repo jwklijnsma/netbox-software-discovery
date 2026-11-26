@@ -1,7 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 from .models import ReportingAgent, SoftwareInstallation
 
-class SoftwareListView(ListView):
+class SoftwareListView(LoginRequiredMixin, ListView):
     model = SoftwareInstallation
     template_name = "netbox_software_discovery/software_list.html"
     context_object_name = "software_list"
@@ -14,11 +15,11 @@ class SoftwareListView(ListView):
         if category: qs = qs.filter(category=category)
         return qs
 
-class SoftwareDetailView(DetailView):
+class SoftwareDetailView(LoginRequiredMixin, DetailView):
     model = SoftwareInstallation
     template_name = "netbox_software_discovery/software_detail.html"
 
-class AgentListView(ListView):
+class AgentListView(LoginRequiredMixin, ListView):
     model = ReportingAgent
     template_name = "netbox_software_discovery/agent_list.html"
     context_object_name = "agents"
