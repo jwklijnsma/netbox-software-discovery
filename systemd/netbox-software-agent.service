@@ -1,0 +1,21 @@
+[Unit]
+Description=NetBox Software Discovery Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=netbox-agent
+Group=netbox-agent
+EnvironmentFile=/etc/netbox-software-agent.env
+ExecStart=/opt/netbox-software-agent/.venv/bin/netbox-software-agent
+Restart=on-failure
+RestartSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/etc/os-release
+
+[Install]
+WantedBy=multi-user.target

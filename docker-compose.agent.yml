@@ -1,0 +1,20 @@
+services:
+  netbox-software-agent:
+    build:
+      context: .
+      dockerfile: agent.Dockerfile
+    container_name: netbox-software-agent
+    restart: unless-stopped
+    environment:
+      NETBOX_URL: ${NETBOX_URL}
+      NETBOX_TOKEN: ${NETBOX_TOKEN}
+      AGENT_ID: ${AGENT_ID:-}
+      DISCOVERY_INTERVAL: ${DISCOVERY_INTERVAL:-900}
+      NETBOX_VERIFY_TLS: ${NETBOX_VERIFY_TLS:-true}
+      NETBOX_OBJECT_TYPE: ${NETBOX_OBJECT_TYPE:-}
+      NETBOX_OBJECT_ID: ${NETBOX_OBJECT_ID:-}
+      PROXMOX_CLUSTER: ${PROXMOX_CLUSTER:-}
+      PROXMOX_NODE: ${PROXMOX_NODE:-}
+      PROXMOX_VMID: ${PROXMOX_VMID:-}
+    # Host package/service/container inventory requires host namespaces and read-only mounts.
+    # Prefer installing the agent natively on servers; this container example discovers its own container only.
