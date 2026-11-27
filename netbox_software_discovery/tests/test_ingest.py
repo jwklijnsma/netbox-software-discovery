@@ -1,6 +1,6 @@
 import pytest
 from netbox_software_discovery.services import ingest_report
-from netbox_software_discovery.models import ReportingAgent, SoftwareInstallation, VersionEvent
+from netbox_software_discovery.models import SoftwareInstallation, VersionEvent
 
 @pytest.mark.django_db
 def test_ingest_and_version_change():

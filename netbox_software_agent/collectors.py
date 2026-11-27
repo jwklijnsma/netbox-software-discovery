@@ -1,5 +1,5 @@
 """Cross-platform inventory collectors. Collectors are best-effort and never execute shell strings."""
-import json, os, platform, re, shutil, socket, subprocess, sys
+import json, platform, shutil, socket, subprocess, sys
 from pathlib import Path
 
 def run(args, timeout=15):

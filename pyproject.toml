@@ -21,11 +21,23 @@ netbox-software-agent = "netbox_software_agent.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["netbox_software_discovery*", "netbox_software_agent*"]
+# keep the NetBox stand-ins used by the unit tests out of the installed package
+exclude = ["*.tests", "*.tests.*"]
+
+[tool.setuptools.package-data]
+# the UI pages need their templates in the installed package
+netbox_software_discovery = ["templates/netbox_software_discovery/*.html"]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "netbox_software_discovery.tests.settings"
+# stand-ins for netbox.plugins / netbox.api so the unit tests run without NetBox
+pythonpath = ["netbox_software_discovery/tests/stubs"]
 python_files = ["test_*.py"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+
+[tool.ruff.lint]
+# real errors only (syntax, undefined/unused names); style is left as it is
+select = ["E9", "F"]

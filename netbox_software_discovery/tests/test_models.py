@@ -1,5 +1,4 @@
 import pytest
-from django.contrib.contenttypes.models import ContentType
 from netbox_software_discovery.models import ReportingAgent, SoftwareInstallation, VersionEvent
 
 @pytest.mark.django_db
